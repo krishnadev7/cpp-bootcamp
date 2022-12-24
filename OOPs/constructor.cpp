@@ -20,6 +20,7 @@ public:
     ~Phone(); // destructor for clearing memory
 };
 
+
 // default constructor
 Phone::Phone() : _name(), _os("android"), _price()
 {
