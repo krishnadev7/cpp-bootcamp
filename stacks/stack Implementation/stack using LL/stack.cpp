@@ -3,10 +3,11 @@ using namespace std;
 
 template<typename T>
 class Node {
+
+    public:
     T data;
     Node<T> *next;
 
-    public:
         Node(T data){
             this->data = data;
             next = NULL;
@@ -34,19 +35,51 @@ class Stack
         }
 
         void push(T ele){
-
+            Node<T> *n = new Node<T>(ele);
+            n->next = head;
+            head = n;
+            size++;
         }
 
         void pop() {
-
+            if(isEmpty()){
+                cout<<"Stack underflow!!"<<endl;    
+                return;        
+            }
+            Node<T> *temp = head;
+            head = head->next;
+            temp->next = NULL;
+            delete temp;
+            size--;
         }
 
         T top(){
-
+            if(isEmpty()){
+                cout<<"Stack underflow!!"<<endl;
+                return 0;
+            }
+            return head->data;
         }
 };
 
 int main(){
     Stack<int> s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+
+    cout<<s.top()<<endl;
+    s.pop();
+
+    cout<<s.top()<<endl;
+    s.pop();
+
+    cout<<s.top()<<endl;
+    s.pop();
+
+    cout<<s.getSize()<<endl;
+    cout<<s.isEmpty()<<endl;
     return 0;
 }
